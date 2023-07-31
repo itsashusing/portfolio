@@ -1,0 +1,15 @@
+
+{% block content %}
+<div class="container2" style="background-color: rgb(245, 199, 142); padding-left: 2rem;">
+    <h3> {% for message in get_flashed_messages() %}
+             {{message}} {{ dname|title }} 
+         {% endfor %}!!!
+    </h3>
+</div>
+<div class="container2" style="background-color: rgb(214, 231, 136); margin: auto; display: block; padding: 2rem; width: 25%;">
+    <h2> We will connect you soon !</h2> 
+    <a href="/">Go back</a>
+</div>
+
+
+{% endblock %}
