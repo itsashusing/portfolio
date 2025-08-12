@@ -1,68 +1,111 @@
-// Helpers
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+AOS.init({ duration: 1000, once: true });
 
-// Parallax on mousemove for hero visual
-const parallax = document.getElementById('parallax');
-const scene = document.getElementById('scene');
-document.addEventListener('mousemove', (e) => {
-    const w = window.innerWidth, h = window.innerHeight;
-    const cx = w / 2, cy = h / 2;
-    const dx = (e.clientX - cx) / cx; // -1..1
-    const dy = (e.clientY - cy) / cy;
-    // move layers
-    document.querySelectorAll('#parallax .layer').forEach(layer => {
-        const depth = parseFloat(layer.getAttribute('data-depth')) || 0.05;
-        layer.style.transform = `translate3d(${dx * depth * 60}px, ${dy * depth * 40}px, 0)`;
-    });
-    // subtle tilt of scene
-    scene.style.transform = `perspective(1000px) rotateY(${dx * 6}deg) rotateX(${-dy * 4}deg) translateZ(0)`;
-});
+// Matter.js setup
+const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Body } = Matter;
+const canvas = document.getElementById("skillsCanvas");
+canvas.width = window.innerWidth;
+canvas.height = document.querySelector('.hero').offsetHeight;
 
-// Card tilt effect for project cards
-document.querySelectorAll('.project').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left; const y = e.clientY - rect.top;
-        const px = (x / rect.width) - 0.5; const py = (y / rect.height) - 0.5;
-        card.style.transform = `translateY(-8px) rotateX(${-py * 8}deg) rotateY(${px * 8}deg)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = '' });
-});
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add('show'); }
-    });
-}, { threshold: 0.12 });
-document.querySelectorAll('[data-anim], .fade-in').forEach(el => observer.observe(el));
-
-// small helpers
-function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-function copyEmail() { navigator.clipboard.writeText('ashutoshprofile@gmail.com').then(() => { alert('Email copied to clipboard!'); }).catch(() => { alert('Could not copy — please copy manually.') }); }
-function openProject(id) {
-    const projects = {
-        1: { title: 'Multi-Tenant SaaS (Practice)', desc: 'Tenant isolation, middleware & per-tenant DB connections. Tech: Laravel, MySQL, Redis.' },
-        2: { link: 'https://www.fairlystaffing.com' },
-        3: { link: 'https://experts-app.com/' }
-    };
-    const p = projects[id];
-    if (p.link) {
-        const redirect = confirm('Do you want to be redirected?'); // browser confirmation dialog
-        if (redirect) {
-            window.open(p.link, '_blank');
-        }
-    } else {
-        alert('This application is not hosted yet.');
+const engine = Engine.create();
+const render = Render.create({
+    canvas: canvas,
+    engine: engine,
+    options: {
+        width: canvas.width,
+        height: canvas.height,
+        wireframes: false,
+        background: 'transparent'
     }
+});
 
+const w = canvas.width;
+const h = canvas.height;
+
+// Walls
+const walls = [
+    Bodies.rectangle(w / 2, h + 25, w, 50, { isStatic: true }),
+    Bodies.rectangle(w / 2, -25, w, 50, { isStatic: true }),
+    Bodies.rectangle(-25, h / 2, 50, h, { isStatic: true }),
+    Bodies.rectangle(w + 25, h / 2, 50, h, { isStatic: true })
+];
+Composite.add(engine.world, walls);
+
+// Skills + empty boxes
+const skills = ["Laravel", "Laravel", "APIs", "MySQL", "MySQL", "Stripe", "Twilio", "Twilio", "Queues", "Queues", "Jobs", "Events", "RBAC", "AJAX", "Bootstrap", "Bootstrap", "Tailwind", "Service"];
+const boxes = [];
+
+skills.forEach(skill => {
+    const box = Bodies.rectangle(
+        Math.random() * w,
+        Math.random() * h,
+        80, 80,
+        {
+            render: {
+                fillStyle: 'rgba(13,202,240,0.6)',
+                strokeStyle: '#0dcaf0',
+                lineWidth: 2
+            },
+            chamfer: { radius: 12 },
+            label: skill
+        }
+    );
+    boxes.push(box);
+});
+
+for (let i = 0; i < 30; i++) {
+    const emptyBox = Bodies.rectangle(
+        Math.random() * w,
+        Math.random() * h,
+        70, 70,
+        {
+            render: {
+                fillStyle: 'rgba(255,255,255,0.05)',
+                strokeStyle: 'rgba(255,255,255,0.2)',
+                lineWidth: 1
+            },
+            chamfer: { radius: 12 },
+            label: ""
+        }
+    );
+    boxes.push(emptyBox);
 }
 
-// Reduce motion prefers
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.project, .hero-visual, .scene').forEach(el => el.style.transition = 'none');
-}
+Composite.add(engine.world, boxes);
+
+// Initial bounce
+setTimeout(() => {
+    boxes.forEach(box => {
+        Body.setVelocity(box, { x: (Math.random() - 0.5) * 10, y: (Math.random() - 0.5) * 10 });
+    });
+}, 500);
+
+// Mouse control
+const mouse = Mouse.create(render.canvas);
+const mouseConstraint = MouseConstraint.create(engine, {
+    mouse: mouse,
+    constraint: { stiffness: 0.2, render: { visible: false } }
+});
+Composite.add(engine.world, mouseConstraint);
+render.mouse = mouse;
+
+// SCROLL FIX — allow mouse wheel to scroll page when over canvas
+mouseConstraint.mouse.element.removeEventListener("wheel", mouseConstraint.mouse.mousewheel);
+mouseConstraint.mouse.element.removeEventListener("mousewheel", mouseConstraint.mouse.mousewheel);
+mouseConstraint.mouse.element.removeEventListener("DOMMouseScroll", mouseConstraint.mouse.mousewheel);
+
+// Draw labels on boxes
+Matter.Events.on(render, 'afterRender', function () {
+    const ctx = render.context;
+    ctx.font = 'bold 14px Segoe UI';
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    Composite.allBodies(engine.world).forEach(body => {
+        if (skills.includes(body.label)) {
+            ctx.fillText(body.label, body.position.x, body.position.y);
+        }
+    });
+});
+
+Render.run(render);
+Runner.run(Runner.create(), engine);
