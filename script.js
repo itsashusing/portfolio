@@ -31,19 +31,19 @@ const walls = [
 Composite.add(engine.world, walls);
 
 // Skills + empty boxes
-const skills = ["Laravel", "Laravel", "APIs", "MySQL", "MySQL", "Stripe", "Twilio", "Twilio", "Queues", "Queues", "Jobs", "Events", "RBAC", "AJAX", "Bootstrap", "Bootstrap", "Tailwind", "Service"];
+const skills = ["Laravel", "php", "APIs", "MySQL", "Stripe", "Twilio", "Queues", "Queues", "Jobs", "Events", "RBAC", "AJAX",];
 const boxes = [];
 
 skills.forEach(skill => {
     const box = Bodies.rectangle(
         Math.random() * w,
         Math.random() * h,
-        80, 80,
+        70, 70,
         {
             render: {
                 fillStyle: 'rgba(13,202,240,0.6)',
                 strokeStyle: '#0dcaf0',
-                lineWidth: 2
+                lineWidth: 1
             },
             chamfer: { radius: 12 },
             label: skill
@@ -52,7 +52,7 @@ skills.forEach(skill => {
     boxes.push(box);
 });
 
-for (let i = 0; i < 30; i++) {
+for (let i = 0; i < 5; i++) {
     const emptyBox = Bodies.rectangle(
         Math.random() * w,
         Math.random() * h,

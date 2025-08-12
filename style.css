@@ -1,87 +1,87 @@
   body {
-            margin: 0;
-            background-color: #061125;
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            overflow-x: hidden;
-        }
+      margin: 0;
+      background-color: #061125;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+  }
 
-        .hero {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
+  .hero {
+      position: relative;
+      height: 80vh  ;
+      overflow: hidden;
+  }
 
-        #skillsCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
+  #skillsCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+  }
 
-        .hero-text {
-            position: relative;
-            top: 50%;
-            left: 8%;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
+  .hero-text {
+      position: relative;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%);
+      z-index: 1;
+  }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-        }
+  .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+  }
 
-        .hero-text h4 {
-            color: #0dcaf0;
-        }
+  .hero-text h4 {
+      color: #0dcaf0;
+  }
 
-        .project-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-        }
+  .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+  }
 
-        .project-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-        }
+  .project-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  }
 
-        .badge-tech {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            margin-right: 4px;
-            font-size: 0.75rem;
-        }
+  .badge-tech {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      margin-right: 4px;
+      font-size: 0.75rem;
+  }
 
-        section#projects {
-            background: #0a162d;
-        }
+  section#projects {
+      background: #0a162d;
+  }
 
-        /* For Webkit browsers */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
+  /* For Webkit browsers */
+  ::-webkit-scrollbar {
+      width: 5px;
+  }
 
-        ::-webkit-scrollbar-track {
-            background: #061125;
-        }
+  ::-webkit-scrollbar-track {
+      background: #061125;
+  }
 
-        /* Modern Apple-style Scrollbar */
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #0dcaf0, #007bff);
-            border-radius: 20px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-        }
+  /* Modern Apple-style Scrollbar */
+  ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #0dcaf0, #007bff);
+      border-radius: 20px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  }
 
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #13e0ff;
-        }
+  ::-webkit-scrollbar-thumb:hover {
+      background: #13e0ff;
+  }
 
-        /* For Firefox */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: #0dcaf0 #061125;
-        }
+  /* For Firefox */
+  * {
+      scrollbar-width: thin;
+      scrollbar-color: #0dcaf0 #061125;
+  }
