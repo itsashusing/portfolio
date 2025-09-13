@@ -10,6 +10,25 @@
       position: relative;
       height: 80vh;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+  }
+
+  .hero-content {
+      position: relative;
+      z-index: 1;
+  }
+
+  .hero-img img {
+      max-width: 300px;
+      border-radius: 50%;
+      border: 4px solid #0dcaf0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+  }
+
+  .hero-img img:hover {
+      transform: scale(1.05);
   }
 
   #skillsCanvas {
@@ -61,6 +80,53 @@
       background: #0a162d;
   }
 
+  .profile-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #0dcaf0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+  }
+
+  #skills {
+      background: #061125;
+      color: white;
+  }
+
+  .skill-card {
+      background: #0a162d;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+
+  .skill-icon,
+  .skill-card img.skill-icon {
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      font-size: 60px;
+      object-fit: contain;
+      margin: 0 auto;
+      transition: transform 0.25s ease, color 0.25s ease;
+      transform-origin: center center;
+      cursor: pointer;
+  }
+
+  .skill-icon:hover {
+      transform: scale(1.15);
+  }
+
+  .skill-card:hover .skill-icon {
+      transform: scale(1.15) !important;
+
+  }
+
+
   /* For Webkit browsers */
   ::-webkit-scrollbar {
       width: 5px;
@@ -89,6 +155,19 @@
   }
 
   @media (max-width: 768px) {
+      .hero {
+          padding: 60px 0;
+          text-align: center;
+      }
+
+      .hero-img img {
+          max-width: 200px;
+      }
+
+      .hero-content {
+          top: -22%;
+      }
+
       .hero-text {
           position: relative;
           top: 50%;
@@ -96,6 +175,10 @@
           transform: translate(-50%, -50%);
           text-align: center;
           padding: 0 15px;
+      }
+
+      .row>*+.row {
+          max-width: max-content !important;
       }
 
       .hero-text h1 {

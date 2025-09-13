@@ -9,6 +9,8 @@
     <link href="/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
     <link href="/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,21 +18,31 @@
 <body>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero d-flex align-items-center">
         <canvas id="skillsCanvas"></canvas>
-        <div class="hero-text">
-            <h1>Ashutosh Singh</h1>
-            <h4>Full Stack Laravel Developer</h4>
-            <p >Building clean, scalable APIs & secure architectures with
-                Laravel, REST APIs, and modern design patterns.
-            </p>
-      
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <!-- Left Text -->
+                <div class="col-md-6 ">
+                    <h1>Ashutosh Singh</h1>
+                    <h3>Laravel Developer</h3>
+                    <p>Scalable Architecture, Design Patterns & Cloud Integration (AWS, DO)
+                    </p>
+                </div>
+
+                <!-- Right Image -->
+                <div class="col-md-6 text-center hero-img">
+                    <img src="img/profile.jpg" alt="Ashutosh Singh" class="profile-img">
+                </div>
+            </div>
         </div>
     </section>
 
+
     <!-- Projects Section -->
     <section id="projects" class="p-5">
-        <h2 class="text-center mb-4" data-aos="fade-up">Projects</h2>
+        <h2 class="text-center mb-4" data-aos="fade-up">PROJECTS</h2>
         <div class="row g-4">
 
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -93,6 +105,76 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills" class="p-5">
+        <h2 class="text-center mb-4" data-aos="fade-up">TECHNICAL SKILLS</h2>
+        <div class="container">
+            <div class="row g-4 text-center">
+
+                <!-- Languages -->
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-php-plain colored skill-icon"></i>
+                    <h6>PHP</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-laravel-plain colored skill-icon"></i>
+                    <h6>Laravel</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-python-plain colored skill-icon"></i>
+                    <h6>Python</h6>
+                </div>
+
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-javascript-plain colored skill-icon"></i>
+                    <h6>JavaScript</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-jquery-plain colored skill-icon"></i>
+                    <h6>jQuery</h6>
+                </div>
+
+
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-html5-plain colored skill-icon"></i>
+                    <h6>HTML5</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-css3-plain colored skill-icon"></i>
+                    <h6>CSS3</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-bootstrap-plain colored skill-icon"></i>
+                    <h6>Bootstrap</h6>
+                </div>
+
+
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-mysql-plain colored skill-icon"></i>
+                    <h6>MySQL</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-sqlite-plain colored skill-icon"></i>
+                    <h6>SQLite</h6>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-mongodb-plain colored skill-icon"></i>
+                    <h6>MongoDB</h6>
+                </div>
+
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <i class="devicon-postman-plain colored skill-icon"></i>
+                    <h6>Postman</h6>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
 
     <!-- Footer -->
     <footer class="py-4" style="background:#0a162d;">
@@ -108,7 +190,7 @@
                     <i class="bi bi-envelope-fill fs-4"></i>
                 </a>
             </div>
-            <p class="mb-0 small text-secondary">© 2025 Ashutosh Singh. All Rights Reserved.</p>
+            <p class="mb-0 small text-secondary">© 2023 Ashutosh Singh. All Rights Reserved.</p>
         </div>
     </footer>
 
